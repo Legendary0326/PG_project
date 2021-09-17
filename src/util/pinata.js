@@ -19,7 +19,6 @@ export const pinJSONToIPFS = async(JSONBody) => {
            };
         })
         .catch(function (error) {
-            console.log(error)
             return {
                 success: false,
                 message: error.message,

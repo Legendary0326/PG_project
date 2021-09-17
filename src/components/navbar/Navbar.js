@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import Modal from "../modal/Modal";
 import Hamburger from "hamburger-react";
+import {
+    connectWallet,
+    getCurrentWalletConnected,
+    mintNFT,
+    disconnect
+} from "../../util/interact.js";
 
 const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setStatus}) => {
     const [openHam, setOpenHam] = useState(false);
@@ -33,21 +39,27 @@ const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setSta
                         >
                             White Paper
                         </a>
-
-                        <button
-                            className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
-                bg-gradient-to-br from-blue-700 to-red-700
-                "
-                            onClick={() => setModal(true)}
-                        >
                             {walletAddress.length > 0 ? (
-                                String(walletAddress).substring(0, 6) +
+                                <button
+                                    className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
+                        bg-gradient-to-br from-blue-700 to-red-700
+                        "
+                                    onClick={() => setWallet('')}
+                                >Disconnect 
+                                {" " + String(walletAddress).substring(0, 3) +
                                 "..." +
-                                String(walletAddress).substring(38)
+                                String(walletAddress).substring(38)}
+                                </button>
                                 ) : (
+                                <button
+                                    className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
+                        bg-gradient-to-br from-blue-700 to-red-700
+                        "
+                                    onClick={() => setModal(true)}
+                                >
                                 <span>Connect Wallet</span>
+                                </button>
                             )}
-                        </button>
                     </div>
                 </div>
             </nav>

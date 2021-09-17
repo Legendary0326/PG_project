@@ -1,5 +1,5 @@
 import React from "react";
-import badge from "../../assets/badge.gif";
+// import badge from "../../assets/badge.gif";
 import video from "../../assets/videos/01.webm";
 import {
     connectWallet,
@@ -17,7 +17,6 @@ const Mint = ({walletAddress, status, setStatus}) => {
         //   setName("");
         //   setDescription("");
         //   setURL("");
-        console.log("successfully mint!")
         }
     };
 

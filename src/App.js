@@ -12,10 +12,9 @@ import { useState } from "react";
 function App() {
 
     const [isModalOpen, setOpenModal] = useState(false);
-    const [walletAddress, setWallet] = useState(false);
-    const [status, setStatus] = useState(false);
-    const [balance, setBalance] =useState(false);
-    console.log(status);
+    const [walletAddress, setWallet] = useState(true);
+    const [status, setStatus] = useState(true);
+    const [balance, setBalance] =useState(true);
     return (
         <BrowserRouter>
             <Navbar isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} balance={balance} setBalance={setBalance}/>
@@ -27,7 +26,7 @@ function App() {
                     <Dashboard walletAddress={walletAddress} setWallet={setWallet} />
                 </Route>
                 <Route path="/inventory">
-                    <Inventory />
+                    <Inventory balance={balance} />
                 </Route>
                 <Route path="/">
                     <Hero isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} balance={balance} setBalance={setBalance} />

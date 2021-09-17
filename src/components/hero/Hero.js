@@ -14,13 +14,14 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
     
     useEffect(async () => {
         const { address, status } = await getCurrentWalletConnected();
-        const balance = await getBalanceOf();
-        console.log('balance', balance);
+        const balance = false;
+        if(address)
+            balance = await getBalanceOf();
 
         setBalance(balance);
         setWallet(address);
         setStatus(status);
-    
+        
         addWalletListener();
     }, []);
     
@@ -82,7 +83,7 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                                 </button>
                                 )
                             }
-                            {(walletAddress.length > 0 && status == "minted" && balance) &&
+                            {(walletAddress.length > 0 && balance) &&
                                 <Link to="/dashboard">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
@@ -92,7 +93,7 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                                     </button>
                                 </Link>
                             }  
-                            {(walletAddress.length > 0 && (status != "minted"  || !balance)) &&
+                            {(walletAddress.length > 0 && !balance) &&
                                 <Link to="/mint">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
