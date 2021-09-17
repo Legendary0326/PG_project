@@ -1,10 +1,15 @@
 import { pinJSONToIPFS } from "./pinata.js";
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
-const contractABI = require("../contract-abi.json");
-const contractAddress = "0x4C4a07F737Bf57F6632B6CAB089B78f62385aCaE";
+const nft_contractABI = require("../contract_ABI/nft_contract-abi.json");
+const life_contractABI = require("../contract_ABI/life_contract-abi.json");
+// const nftContractAddress = "0xc0dfddc8bbc74c3c454d418b7801b7e81b6e9130";
+const nftContractAddress = "0x530335c6f266dd3cfa083ac793a31bd87511446c";
+const lifeContractAddress = "0x4fe34797fb017b1579feada89bac57e07523dae6";
+const adminAddress = "0x6C6A7Bada6D38C718a27026b74B392Fda5a97d17";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
+const lifeAmount = 1000;
 
 export const connectWallet = async () => {
   if (window.ethereum) {
@@ -86,7 +91,7 @@ export const getCurrentWalletConnected = async () => {
 };
 
 async function loadContract() {
-  return new web3.eth.Contract(contractABI, contractAddress);
+  // return new web3.eth.Contract(nft_contractABI, contractAddress);
 }
 
 export const mintNFT = async (url, name, description) => {
@@ -111,22 +116,41 @@ export const mintNFT = async (url, name, description) => {
     };
   }
   const tokenURI = pinataResponse.pinataUrl;
+  window.nft_contract = await new web3.eth.Contract(nft_contractABI, nftContractAddress);
+  window.life_contract = await new web3.eth.Contract(life_contractABI, lifeContractAddress);
 
-  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
+  //mint NFT transaction
+  const nftTransactionParameters = {
+    to: nftContractAddress, // Required except during contract publications.
     from: window.ethereum.selectedAddress, // must match user's active address.
-    data: window.contract.methods
+    data: window.nft_contract.methods
       .mintNFT(window.ethereum.selectedAddress, tokenURI)
       .encodeABI(),
   };
 
+  //transfer 1000 life token to admin
+  const lifeTransactionParameters = {
+    to: lifeContractAddress, // Required except during contract publications.
+    from: window.ethereum.selectedAddress, // must match user's active address.
+    data: window.life_contract.methods
+      .transfer(adminAddress, lifeAmount)
+      .encodeABI(),
+  };
+
+
   try {
     const txHash = await window.ethereum.request({
       method: "eth_sendTransaction",
-      params: [transactionParameters],
+      params: [lifeTransactionParameters],
     });
+
+    if(txHash){
+      txHash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [nftTransactionParameters],
+      });
+    }
+
     return {
       success: true,
       status:
@@ -139,4 +163,21 @@ export const mintNFT = async (url, name, description) => {
       status: "😥 Something went wrong: " + error.message,
     };
   }
+};
+
+export const getBalanceOf = async() => {
+
+  await window.ethereum.enable();
+  const nft_contract = await new web3.eth.Contract(nft_contractABI, nftContractAddress);
+  const balance = await nft_contract.methods.getNFTBalance(window.ethereum.selectedAddress).call();
+  // const balance = await web3.eth.getBalance("0x407d73d8a49eeb85d32cf465507dd71d507100c1");
+  if(!balance){
+    console.log('err');
+    return false;
+  }
+  else{
+    console.log('balance is', balance);
+    return balance;
+  }
+    
 };

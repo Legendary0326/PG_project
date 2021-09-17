@@ -7,14 +7,17 @@ import background from "../../assets/background.png";
 import {
   connectWallet,
   getCurrentWalletConnected,
-  mintNFT,
+  getBalanceOf,
 } from "../../util/interact.js";
 
-const Hero = ({setModal, walletAddress, setWallet, status, setStatus}) => {
-
+const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, setBalance}) => {
+    
     useEffect(async () => {
         const { address, status } = await getCurrentWalletConnected();
-    
+        const balance = await getBalanceOf();
+        console.log('balance', balance);
+
+        setBalance(balance);
         setWallet(address);
         setStatus(status);
     
@@ -79,7 +82,7 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus}) => {
                                 </button>
                                 )
                             }
-                            {(walletAddress.length > 0 && status == "minted") &&
+                            {(walletAddress.length > 0 && status == "minted" && balance) &&
                                 <Link to="/dashboard">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
@@ -89,7 +92,7 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus}) => {
                                     </button>
                                 </Link>
                             }  
-                            {(walletAddress.length > 0 && status != "minted") &&
+                            {(walletAddress.length > 0 && (status != "minted"  || !balance)) &&
                                 <Link to="/mint">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"

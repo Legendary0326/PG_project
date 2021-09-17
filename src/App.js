@@ -14,10 +14,11 @@ function App() {
     const [isModalOpen, setOpenModal] = useState(false);
     const [walletAddress, setWallet] = useState(false);
     const [status, setStatus] = useState(false);
+    const [balance, setBalance] =useState(false);
     console.log(status);
     return (
         <BrowserRouter>
-            <Navbar isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} />
+            <Navbar isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} balance={balance} setBalance={setBalance}/>
             <Switch>
                 <Route path="/mint">
                     <Mint walletAddress={walletAddress} status={status} setStatus={setStatus} />
@@ -29,7 +30,7 @@ function App() {
                     <Inventory />
                 </Route>
                 <Route path="/">
-                    <Hero isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} />
+                    <Hero isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} balance={balance} setBalance={setBalance} />
                 </Route>
             </Switch>
         </BrowserRouter>

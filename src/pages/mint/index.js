@@ -11,7 +11,7 @@ const assetsURI = "https://ipfs.io/ipfs/QmPzTEXKmYnRj2WWsgvGzn3nhj7MEEhNR2gQAFyq
 
 const Mint = ({walletAddress, status, setStatus}) => {
     const onMintPressed = async () => {
-        const { success, status } = await mintNFT(assetsURI, "YYG", "description");
+        const { success, status } = await mintNFT(assetsURI, "PG", "PG NFT FOR YIELD GAME");
         setStatus(status);
         if (success) {
         //   setName("");
