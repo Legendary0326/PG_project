@@ -10,20 +10,19 @@ import { useState } from "react";
 
 
 function App() {
-
     const [isModalOpen, setOpenModal] = useState(false);
     const [walletAddress, setWallet] = useState(true);
     const [status, setStatus] = useState(true);
-    const [balance, setBalance] =useState(true);
+    const [balance, setBalance] =useState(0);
     return (
         <BrowserRouter>
             <Navbar isModalOpen={isModalOpen} setModal={setOpenModal}  walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} balance={balance} setBalance={setBalance}/>
             <Switch>
                 <Route path="/mint">
-                    <Mint walletAddress={walletAddress} status={status} setStatus={setStatus} />
+                    <Mint walletAddress={walletAddress} status={status} setStatus={setStatus} balance={balance} />
                 </Route>
                 <Route path="/dashboard">
-                    <Dashboard walletAddress={walletAddress} setWallet={setWallet} />
+                    <Dashboard walletAddress={walletAddress} setWallet={setWallet} balance={balance} />
                 </Route>
                 <Route path="/inventory">
                     <Inventory balance={balance} />

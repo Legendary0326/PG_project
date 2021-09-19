@@ -9,14 +9,14 @@ import {
 
 const assetsURI = "https://ipfs.io/ipfs/QmPzTEXKmYnRj2WWsgvGzn3nhj7MEEhNR2gQAFyquEmF57";
 
-const Mint = ({walletAddress, status, setStatus}) => {
+const Mint = ({walletAddress, status, setStatus, balance}) => {
+    if(balance > 0)
+        window.location.href = "/";
     const onMintPressed = async () => {
         const { success, status } = await mintNFT(assetsURI, "PG", "PG NFT FOR YIELD GAME");
         setStatus(status);
         if (success) {
-        //   setName("");
-        //   setDescription("");
-        //   setURL("");
+            window.location.href = "/inventory";
         }
     };
 

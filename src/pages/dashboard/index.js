@@ -3,7 +3,9 @@ import ButtonOutlined from "../../components/button/button-outlined/ButtonOutlin
 import Sidebar from "../../components/sidebar/Sidebar";
 import Marquee from "react-fast-marquee";
 
-const Dashboard = ({ walletAddress, setWallet }) => {
+const Dashboard = ({ walletAddress, setWallet, balance }) => {
+    if(balance == 0)
+        window.location.href = "/";
     return (
         <div className="h-full text-white flex gap-4">
             <Sidebar active={"dash"}/>

@@ -9,10 +9,9 @@ import {
     disconnect
 } from "../../util/interact.js";
 
-const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setStatus}) => {
+const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setStatus, balance}) => {
     const [openHam, setOpenHam] = useState(false);
     const hamClass = openHam ? "" : "hidden";
-
     return (
         <>
             <nav className="bg-black text-white lg:p-4 p-2 relative z-10">
@@ -44,9 +43,8 @@ const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setSta
                                     className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
                         bg-gradient-to-br from-blue-700 to-red-700
                         "
-                                    onClick={() => setWallet('')}
-                                >Disconnect 
-                                {" " + String(walletAddress).substring(0, 3) +
+                                > 
+                                {String(walletAddress).substring(0, 6) +
                                 "..." +
                                 String(walletAddress).substring(38)}
                                 </button>

@@ -14,10 +14,10 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
     
     useEffect(async () => {
         const { address, status } = await getCurrentWalletConnected();
-        const balance = false;
+        let balance = false;
         if(address)
             balance = await getBalanceOf();
-
+        console.log(balance);
         setBalance(balance);
         setWallet(address);
         setStatus(status);
@@ -83,25 +83,25 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                                 </button>
                                 )
                             }
-                            {(walletAddress.length > 0 && balance) &&
+                            {(walletAddress.length > 0 && balance > 0) && (
                                 <Link to="/dashboard">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
-                                            // onClick={setModal(true)}
                                     >
                                         <span className="animate-pulse">Continue your wallet to start</span>
                                     </button>
                                 </Link>
+                                )
                             }  
-                            {(walletAddress.length > 0 && !balance) &&
+                            {(walletAddress.length > 0 && balance == 0) && (
                                 <Link to="/mint">
                                     <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
-                                            // onClick={setModal(true)}
                                     >
                                         <span className="animate-pulse">Start your Adventure</span>
                                     </button>
                                 </Link>
+                                )
                             }
                             </div>
 

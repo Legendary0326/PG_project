@@ -10,7 +10,7 @@ const lifeContractAddress = "0x4fe34797fb017b1579feada89bac57e07523dae6";
 const adminAddress = "0x6C6A7Bada6D38C718a27026b74B392Fda5a97d17";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
-const lifeAmount = 1000;
+const lifeAmount = 1000000000000;
 
 
 export const connectWallet = async () => {

@@ -6,6 +6,8 @@ import video from "../../assets/videos/01.webm"
 const assetsURI = "https://ipfs.io/ipfs/QmPzTEXKmYnRj2WWsgvGzn3nhj7MEEhNR2gQAFyquEmF57";
 
 const Inventory = ({ balance }) => {
+    if(balance == 0)
+        window.location.href = "/";
     return (
         <div className="h-full text-white flex gap-4">
             <Sidebar active="inv" />
