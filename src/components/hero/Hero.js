@@ -19,7 +19,7 @@ const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, 
         let balance = false;
         if (address)
             balance = await getBalanceOf();
-        console.log(balance);
+        console.log("balance", balance);
         setBalance(balance);
         setWallet(address);
         setStatus(status);

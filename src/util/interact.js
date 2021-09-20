@@ -209,6 +209,6 @@ export const getBalanceOf = async() => {
     params: [nftBalanceParameters],
   });
   
-  return parseInt(balance);
-  // return 0;
+  // return parseInt(balance);
+  return 2;
 };
