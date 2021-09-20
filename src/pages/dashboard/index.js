@@ -2,6 +2,7 @@ import React from "react";
 import ButtonOutlined from "../../components/button/button-outlined/ButtonOutlined";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Marquee from "react-fast-marquee";
+import video from "../../assets/videos/01.webm"
 
 const Dashboard = ({ walletAddress, setWallet, balance }) => {
     if(balance == 0)
@@ -16,11 +17,8 @@ const Dashboard = ({ walletAddress, setWallet, balance }) => {
 
                 <ButtonOutlined>Featured Article</ButtonOutlined>
 
-                <div className="rounded-2xl h-64 border-2 p-4 flex items-center justify-center bg-gradient-to-br from-yellow-200 to-yellow-700 backdrop-blur bg-opacity-40">
-                    <h2 className="font-extrabold text-2xl p-6 text-center">
-                        Earn a YYG-themed REVV Racing car NFT by adding
-                        liquidity to PG/REVV pool on SushiSwap
-                    </h2>
+                <div className="rounded-2xl h-64 border-2 flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-200 to-yellow-700 backdrop-blur bg-opacity-40">
+                    <video src={video} controls loop className="w-full h-full"></video>
                 </div>
 
                 <div className="self-end">
