@@ -31,7 +31,7 @@ const Modal = ({
                         onClick={() => closeModal()}
                     >
                         <div
-                            className="inner max-w-screen-sm flex-grow  text-white  bg-gradient-to-br from-red-800 to-blue-600 p-1 opacity-100 rounded-3xl"
+                            className="inner max-w-screen-sm flex-grow  text-white  bg-gradient-to-br from-yellow-200 to-yellow-700 p-1 opacity-100 rounded-3xl"
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}

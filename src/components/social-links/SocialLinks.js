@@ -7,8 +7,8 @@ import twitterLogo from "../../assets/icons/twitter.svg";
 const SocialLinks = () => {
     return (
         <div className="flex justify-center relative z-10">
-            <div className="bg-gradient-to-br from-blue-700 to-red-700 rounded-full p-0.5">
-                <ul className="text-white flex gap-8 rounded-full px-12 py-4 bg-black">
+            <div className="bg-gradient-to-br from-yellow-100 to-yellow-700 rounded-full p-0.5">
+                <ul className="text-white flex space-x-4 rounded-full px-12 py-4 bg-black">
                     <li>
                         <a href="https://discord.gg/AWSVhfkVXG">
                             <img src={discordLogo} alt="" />

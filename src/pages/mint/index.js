@@ -22,7 +22,7 @@ const Mint = ({walletAddress, status, setStatus, balance}) => {
 
     return (
         <div className="text-white container mx-auto space-y-8">
-            <div className="bg-gradient-to-br from-blue-600 to bg-red-600 p-1 rounded-full max-w-md mx-auto">
+            <div className="bg-gradient-to-br from-yellow-100 to-yellow-700 p-1 rounded-full max-w-md mx-auto">
                 <h2 className="p-2 bg-black rounded-full font-bold text-lg text-center">
                     Mint Your Guild Badge
                 </h2>
@@ -38,7 +38,7 @@ const Mint = ({walletAddress, status, setStatus, balance}) => {
             </p>
 
             <div className="text-center">
-                <button className="bg-gradient-to-br from-blue-600 to-red-500 py-2 px-6 rounded-full font-bold text-lg" onClick={onMintPressed}>Mint Badge</button>
+                <button className="bg-gradient-to-br from-yellow-100 to-yellow-700 py-2 px-6 rounded-full font-bold text-lg" onClick={onMintPressed}>Mint Badge</button>
             </div>
         </div>
     );

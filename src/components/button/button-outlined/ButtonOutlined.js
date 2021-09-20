@@ -7,7 +7,7 @@ const ButtonOutlined = (props) => {
 
     return (
         <button
-            className={` from-blue-600 to-red-500 w-full  ${activeClass} ${rounded}`}
+            className={` from-yellow-100 to-yellow-700 w-full  ${activeClass} ${rounded}`}
         >
             <p
                 className={`font-bold text-lg bg-black p-2 hover:bg-gray-800 ${rounded}`}

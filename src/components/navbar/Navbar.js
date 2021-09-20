@@ -9,7 +9,7 @@ import {
     disconnect
 } from "../../util/interact.js";
 
-const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setStatus, balance}) => {
+const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setStatus, balance }) => {
     const [openHam, setOpenHam] = useState(false);
     const hamClass = openHam ? "" : "hidden";
     return (
@@ -32,37 +32,36 @@ const Navbar = ({isModalOpen, setModal, walletAddress, setWallet, status, setSta
                          mt-4 w-full h-screen transition duration-300 text-center bg-black`}
                     >
                         <a
-                            className="bg-blue-600 text-white font-extrabold px-10 py-4 rounded-full uppercase bg-gradient-to-br from-blue-700 to-red-700 mr-2"
+                            className="text-white font-extrabold px-10 py-4 rounded-full uppercase bg-gradient-to-br from-yellow-200 to-yellow-700 mr-2"
                             href="https://yieldguild.io/YGG-Whitepaper-English.pdf"
                             target="blank"
                         >
                             White Paper
                         </a>
-                            {walletAddress.length > 0 ? (
-                                <button
-                                    className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
-                        bg-gradient-to-br from-blue-700 to-red-700
+                        {walletAddress.length > 0 ? (
+                            <button
+                                className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase bg-gradient-to-br from-blue-700 to-red-700
                         "
-                                > 
+                            >
                                 {String(walletAddress).substring(0, 6) +
-                                "..." +
-                                String(walletAddress).substring(38)}
-                                </button>
-                                ) : (
+                                    "..." +
+                                    String(walletAddress).substring(38)}
+                            </button>
+                        ) : (
                                 <button
                                     className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase
-                        bg-gradient-to-br from-blue-700 to-red-700
+                        bg-gradient-to-br from-yellow-200 to-yellow-700
                         "
                                     onClick={() => setModal(true)}
                                 >
-                                <span>Connect Wallet</span>
+                                    <span>Connect Wallet</span>
                                 </button>
                             )}
                     </div>
                 </div>
             </nav>
 
-            <Modal open={isModalOpen}  closeModal={() => setModal(false)} walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} />
+            <Modal open={isModalOpen} closeModal={() => setModal(false)} walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} />
         </>
     );
 };

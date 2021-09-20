@@ -1,52 +1,54 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logoShield from "../../assets/logo_shield.png";
+
+import logoShield from "../../assets/shield_.png";
+
 import logoShieldShadow from "../../assets/logo_shield_shadow.png";
 import SocialLinks from "../social-links/SocialLinks";
 import background from "../../assets/background.png";
 import {
-  connectWallet,
-  getCurrentWalletConnected,
-  getBalanceOf,
+    connectWallet,
+    getCurrentWalletConnected,
+    getBalanceOf,
 } from "../../util/interact.js";
 
-const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, setBalance}) => {
-    
+const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, setBalance }) => {
+
     useEffect(async () => {
         const { address, status } = await getCurrentWalletConnected();
         let balance = false;
-        if(address)
+        if (address)
             balance = await getBalanceOf();
         console.log(balance);
         setBalance(balance);
         setWallet(address);
         setStatus(status);
-        
+
         addWalletListener();
     }, []);
-    
+
     function addWalletListener() {
         if (window.ethereum) {
-          window.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-              setWallet(accounts[0]);
-              setStatus("👆🏽 Write a message in the text-field above.");
-            } else {
-              setWallet("");
-              setStatus("🦊 Connect to Metamask using the top right button.");
-            }
-          });
+            window.ethereum.on("accountsChanged", (accounts) => {
+                if (accounts.length > 0) {
+                    setWallet(accounts[0]);
+                    setStatus("👆🏽 Write a message in the text-field above.");
+                } else {
+                    setWallet("");
+                    setStatus("🦊 Connect to Metamask using the top right button.");
+                }
+            });
         } else {
-          setStatus(
-            <p>
-              {" "}
+            setStatus(
+                <p>
+                    {" "}
               🦊{" "}
-              <a target="_blank" href={`https://metamask.io/download.html`}>
-                You must install Metamask, a virtual Ethereum wallet, in your
-                browser.
+                    <a target="_blank" href={`https://metamask.io/download.html`}>
+                        You must install Metamask, a virtual Ethereum wallet, in your
+                        browser.
               </a>
-            </p>
-          );
+                </p>
+            );
         }
     }
 
@@ -56,8 +58,8 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                 <div className="p-4 flex-grow flex flex-col justify-center 2xl:container mx-auto relative overflow-hidden w-full">
                     <div className=" flex items-center">
                         <div className="w-full lg:pl-24 relative z-10">
-                            <div className="flex gap-12 relative z-10 justify-center lg:justify-start">
-                                <div className="lg:block hidden">
+                            <div className="flex items-center space-x-4 relative z-10 justify-center lg:justify-start">
+                                <div className="lg:block w-72 hidden">
                                     <img src={logoShield} alt="" />
                                 </div>
                                 <div className="content">
@@ -74,53 +76,53 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                             </div>
 
                             <div className="text-center lg:text-left">
-                            {(walletAddress.length <= 0) && (
-                                <button
-                                    className="mt-8 bg-blue-600 text-white font-extrabold text-xl px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
-                                    onClick={() => setModal(true)}
-                                >
-                                    <span className="animate-pulse">Connect Your Wallet To Start</span>
-                                </button>
-                                )
-                            }
-                            {(walletAddress.length > 0 && balance > 0) && (
-                                <Link to="/dashboard">
+                                {(walletAddress.length <= 0) && (
                                     <button
-                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
+                                        className="mt-8 bg-blue-600 text-white font-extrabold text-xl px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-yellow-200 to-yellow-700"
+                                        onClick={() => setModal(true)}
                                     >
-                                        <span className="animate-pulse">Continue your wallet to start</span>
+                                        <span className="animate-pulse">Connect Your Wallet To Start</span>
                                     </button>
-                                </Link>
                                 )
-                            }  
-                            {(walletAddress.length > 0 && balance == 0) && (
-                                <Link to="/mint">
-                                    <button
+                                }
+                                {(walletAddress.length > 0 && balance > 0) && (
+                                    <Link to="/dashboard">
+                                        <button
                                             className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
-                                    >
-                                        <span className="animate-pulse">Start your Adventure</span>
-                                    </button>
-                                </Link>
+                                        >
+                                            <span className="animate-pulse">Continue your wallet to start</span>
+                                        </button>
+                                    </Link>
                                 )
-                            }
+                                }
+                                {(walletAddress.length > 0 && balance == 0) && (
+                                    <Link to="/mint">
+                                        <button
+                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
+                                        >
+                                            <span className="animate-pulse">Start your Adventure</span>
+                                        </button>
+                                    </Link>
+                                )
+                                }
                             </div>
 
-                            <div className="absolute top-0 left-0 z-0 lg:block hidden">
+                            {/* <div className="absolute top-0 left-0 z-0 lg:block hidden ">
                                 <img
                                     src={logoShieldShadow}
                                     alt=""
                                     className="relative -left-2 bottom-12"
                                 />
-                            </div>
+                            </div> */}
+
                         </div>
                     </div>
+
                     {/* for desktop */}
                     <div
-                        className="hidden lg:flex lg:absolute right-0 z-0 lg:max-w-3xl items-start justify-center"
-                        style={{ transform: "translate(20%, 0)", minHeight: '575px', minWidth: '720px' }}
-                    >
+                        className="p-4 hidden lg:flex lg:absolute right-0 z-0 lg:max-w-3xl items-start justify-center w-96">
                         <img
-                            src={background}
+                            src={logoShield}
                             alt=""
                             className="w-full"
                         />
@@ -128,13 +130,13 @@ const Hero = ({setModal, walletAddress, setWallet, status, setStatus, balance, s
                     {/* for mobile */}
                     <div className="lg:hidden flex items-start justify-center">
                         <img
-                            src={background}
+                            src={logoShield}
                             alt=""
                             className="relative w-2/4 mt-8 lg:w-auto lg:mt-0"
                         />
                     </div>
                 </div>
-                
+
                 <div className="mb-8">
                     <SocialLinks />
                 </div>
