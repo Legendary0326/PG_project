@@ -20,9 +20,10 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
                         <Hamburger toggled={openHam} toggle={setOpenHam} />
                     </div>
                     <div className="lg:hidden flex-grow"></div>
-                    <div className="logo">
+
+                    <div className="logo w-46">
                         <a href="/">
-                            <img src={logo} alt="Website Logo" />
+                            <img src={logo} alt="Website Logo" style={{transform: "scale(1.2)"}} />
                         </a>
                     </div>
 

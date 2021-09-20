@@ -59,7 +59,7 @@ const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, 
                     <div className=" flex items-center">
                         <div className="w-full lg:pl-24 relative z-10">
                             <div className="flex items-center space-x-4 relative z-10 justify-center lg:justify-start">
-                                <div className="lg:block w-72 hidden">
+                                <div className="lg:block w-48 hidden">
                                     <img src={logoShield} alt="" />
                                 </div>
                                 <div className="content">
@@ -120,7 +120,7 @@ const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, 
 
                     {/* for desktop */}
                     <div
-                        className="p-4 hidden lg:flex lg:absolute right-0 z-0 lg:max-w-3xl items-start justify-center w-96">
+                        className="p-4 hidden lg:flex lg:absolute right-6 z-0 lg:max-w-3xl items-start justify-center w-96" style={{transform: "scale(1.1)"}}>
                         <img
                             src={logoShield}
                             alt=""
