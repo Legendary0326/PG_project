@@ -40,7 +40,7 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
                         </a>
                         {walletAddress.length > 0 ? (
                             <button
-                                className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase bg-gradient-to-br from-blue-700 to-red-700
+                                className="bg-blue-600 text-white font-extrabold px-10  py-4 rounded-full uppercase bg-gradient-to-br from-yellow-200 to-yellow-700
                         "
                             >
                                 {String(walletAddress).substring(0, 6) +

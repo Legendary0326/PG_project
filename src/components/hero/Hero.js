@@ -88,7 +88,7 @@ const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, 
                                 {(walletAddress.length > 0 && balance > 0) && (
                                     <Link to="/dashboard">
                                         <button
-                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
+                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-yellow-200 to-yellow-700"
                                         >
                                             <span className="animate-pulse">Continue your wallet to start</span>
                                         </button>
@@ -98,7 +98,7 @@ const Hero = ({ setModal, walletAddress, setWallet, status, setStatus, balance, 
                                 {(walletAddress.length > 0 && balance == 0) && (
                                     <Link to="/mint">
                                         <button
-                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-blue-800 to-red-800"
+                                            className="mt-8 bg-blue-600 text-white font-extrabold px-12 py-6 rounded-full uppercase relative z-10 bg-gradient-to-br from-yellow-200 to-yellow-700"
                                         >
                                             <span className="animate-pulse">Start your Adventure</span>
                                         </button>
