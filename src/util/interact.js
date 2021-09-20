@@ -5,7 +5,7 @@ const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const nft_contractABI = require("../contract_ABI/nft_contract-abi.json");
 const life_contractABI = require("../contract_ABI/life_contract-abi.json");
 const nftContractAddress = "0xc0dfddc8bbc74c3c454d418b7801b7e81b6e9130";
-// const nftContractAddress = "0x530335c6f266dd3cfa083ac793a31bd87511446c";
+// const nftContractAddress = "0x7694bf302a234f871f9502e9d7dcbcb2b7f089e3";
 const lifeContractAddress = "0x4fe34797fb017b1579feada89bac57e07523dae6";
 const adminAddress = "0x6C6A7Bada6D38C718a27026b74B392Fda5a97d17";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
@@ -131,27 +131,52 @@ export const mintNFT = async (url, name, description) => {
   };
 
   //transfer 1000 life token to admin
-  const lifeTransactionParameters = {
-    to: lifeContractAddress, // Required except during contract publications.
-    from: window.ethereum.selectedAddress, // must match user's active address.
-    data: window.life_contract.methods
-      .transfer(adminAddress, lifeAmount)
-      .encodeABI(),
-  };
+  // const lifeTransactionParameters = {
+  //   to: lifeContractAddress, // Required except during contract publications.
+  //   from: window.ethereum.selectedAddress, // must match user's active address.
+  //   data: window.life_contract.methods
+  //     .transfer(adminAddress, lifeAmount)
+  //     .encodeABI(),
+  // };
 
+  //get Life token balance
+  // const lifeBalanceParameters = {
+  //   to: lifeContractAddress, // Required except during contract publications.
+  //   from: window.ethereum.selectedAddress, // must match user's active address.
+  //   data: window.life_contract.methods
+  //     .balanceOf(window.ethereum.selectedAddress)
+  //     .encodeABI(),
+  // };
 
   try {
-    const txHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [lifeTransactionParameters],
-    });
+    // const txHash = await window.ethereum.request({
+    //   method: "eth_sendTransaction",
+    //   params: [lifeTransactionParameters],
+    // });
 
-    if(txHash){
-      txHash = await window.ethereum.request({
+    // if(txHash){
+      const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [nftTransactionParameters],
       });
-    }
+    // }
+
+    // const balance = await window.ethereum.request({
+    //   method: "eth_call",
+    //   params: [lifeBalanceParameters],
+    // });
+    
+    // let lifeBalance = parseInt(balance);
+    // console.log('life balance', lifeBalance);
+
+    // if(lifeBalance >= 1000000000000){
+    //   const txHash = await window.ethereum.request({
+    //     method: "eth_sendTransaction",
+    //     params: [nftTransactionParameters],
+    //   });
+    // } else{
+    //   throw 'error';
+    // }
 
     return {
       success: true,
@@ -160,6 +185,8 @@ export const mintNFT = async (url, name, description) => {
         txHash,
     };
   } catch (error) {
+    if(error == 'error')
+      console.log(error);
     return {
       success: false,
       status: "😥 Something went wrong: " + error.message,
@@ -183,4 +210,5 @@ export const getBalanceOf = async() => {
   });
   
   return parseInt(balance);
+  // return 0;
 };
