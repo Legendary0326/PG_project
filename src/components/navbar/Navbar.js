@@ -21,9 +21,9 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
                     </div>
                     <div className="lg:hidden flex-grow"></div>
 
-                    <div className="logo w-46">
+                    <div className="ml-4 mt-2 logo">
                         <a href="/">
-                            <img src={logo} alt="Website Logo" style={{transform: "scale(1.2)"}} />
+                            <img src={logo} alt="Website Logo" style={{transform: "scale(1.4)"}} />
                         </a>
                     </div>
 
