@@ -14,8 +14,8 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
     const hamClass = openHam ? "" : "hidden";
     return (
         <>
-            <nav className="bg-black text-white lg:p-4 p-2 relative z-10">
-                <div className="2xl:container mx-auto flex flex-wrap lg:gap-8 items-center">
+            <nav className="bg-black text-white lg:p-4 p-2 relative z-10 shadow-white">
+                <div className="2xl:container mx-auto flex flex-wrap lg:gap-8 ibtems-center">
                     <div className="lg:hidden">
                         <Hamburger toggled={openHam} toggle={setOpenHam} />
                     </div>
@@ -61,7 +61,7 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
                     </div>
                 </div>
             </nav>
-
+            
             <Modal open={isModalOpen} closeModal={() => setModal(false)} walletAddress={walletAddress} setWallet={setWallet} status={status} setStatus={setStatus} />
         </>
     );
