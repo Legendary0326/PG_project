@@ -2,7 +2,7 @@ import React from "react";
 import ButtonOutlined from "../../components/button/button-outlined/ButtonOutlined";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Marquee from "react-fast-marquee";
-import video from "../../assets/videos/article/article.MP4"
+import video from "../../assets/videos/article/article.mp4"
 
 const Dashboard = ({ walletAddress, setWallet, balance }) => {
     if(balance == 0)

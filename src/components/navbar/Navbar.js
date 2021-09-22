@@ -34,7 +34,7 @@ const Navbar = ({ isModalOpen, setModal, walletAddress, setWallet, status, setSt
                     >
                         <a
                             className="text-white font-extrabold px-10 py-4 rounded-full uppercase bg-gradient-to-br from-yellow-200 to-yellow-700 mr-2"
-                            href="https://yieldguild.io/YGG-Whitepaper-English.pdf"
+                            href="https://www.dropbox.com/s/o8ts7kusvnkgwkr/bduff%20%284%29.pdf"
                             target="blank"
                         >
                             White Paper
